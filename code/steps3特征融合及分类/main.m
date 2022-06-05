@@ -1,16 +1,16 @@
 
 
-%%ÌáÈ¡¹²ĞÔÌØÕ÷
-scrtrain=* %Â·¾¶
+%%æå–å…±æ€§ç‰¹å¾
+scrtrain=* %è·¯å¾„
 imageSize = 256;
 hsize=50;
-[featuretrain_hog,~]=hogfeature(scrtrain,imageSize,hsize);
-[featuretest_hog,~]=hogfeature(scrtest,imageSize,hsize);  %ÌáÈ¡ÌØÕ÷£¬ÊäÈëÂ·¾¶Îª»®·ÖµÄÑµÁ·¼¯¾ÍÎªÌáÈ¡ÑµÁ·¼¯ÌØÕ÷£¬×¢ÒâÓë±êÇ©Ò»ÖÂ
+[featuretrain_hog,~]=lbpfeature(scrtrain,imageSize,hsize);
+[featuretest_hog,~]=lbpfeature(scrtest,imageSize,hsize);  %æå–ç‰¹å¾ï¼Œè¾“å…¥è·¯å¾„ä¸ºåˆ’åˆ†çš„è®­ç»ƒé›†å°±ä¸ºæå–è®­ç»ƒé›†ç‰¹å¾ï¼Œæ³¨æ„ä¸æ ‡ç­¾ä¸€è‡´
 
-%%¹²ĞÔÓëÌØĞÔÌØÕ÷ÈÚºÏ
+%%å…±æ€§ä¸ç‰¹æ€§ç‰¹å¾èåˆ
 feature_train=[mapminmax(features_train_juanji,0,1),mapminmax(features_train_lbp,0,1)];
 feature_test=[mapminmax(features_test_juanji,0,1),mapminmax(features_test_lbp,0,1)];
 
-%%¶ÔÈÚºÏµÄÌØÕ÷·ÖÀà
+%%å¯¹èåˆçš„ç‰¹å¾åˆ†ç±»
 [label_lbp,score_lbp,accuracy_lbp]= svmfenlei(featuretrain_lbp,labeltrainnum,featuretest_lbp,labeltestnum);
 [label_train,score_test,accuracy_all]= svmfenlei(feature_train,labeltrainnum,feature_test,labeltestnum);
